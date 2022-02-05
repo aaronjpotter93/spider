@@ -4,12 +4,18 @@
     $contact = filter_input(INPUT_POST, 'contact');
     $comments = filter_input(INPUT_POST, 'comments');
     
-    if ($contact_by_email) $contact_by_email = 1;
-    else ($contact_by_email = 0);
-    if ($contact_by_mobile) $contact_by_mobile = 1;
-    else ($contact_by_mobile = 0);
-//    echo ($contact_by_email);
-//    echo ($contact_by_mobile);
+    if ($contact == 'text') {
+        $contact_by_mobile = 1;
+    }
+    else {
+        $contact_by_mobile = 0;
+    }
+    if ($contact == 'email'){
+        $contact_by_email = 1;
+    }
+    else {
+        $contact_by_email = 0;
+    }
     
     if ($email_address == null || $phone == null 
             || $comments == null) {
@@ -52,10 +58,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/home.css">
+    <link href="../css/contact.css" rel="stylesheet" type="text/css"/>
 </head>
     <body>
-        <h1>Thank You!</h1>
+        <h1 id="thankYouScreen">Thank You!</h1>
     </body>
 </html>
 
