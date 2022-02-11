@@ -1,4 +1,5 @@
 <?php
+
 /*
  *
  *       Date              User               Description
@@ -8,40 +9,11 @@
  *  
  */
 
+require_once ('../../model/database.php');
+require_once ('../../model/respondent.php');
 
+$respondents = RespondentDB::getRespondents();
 
-$email_address = filter_input(INPUT_POST, 'email_address');
-$phone = filter_input(INPUT_POST, 'phone');
-$contact = filter_input(INPUT_POST, 'contact');
-$comments = filter_input(INPUT_POST, 'comments');
-
-if ($contact == 'text') {
-    $contact_by_mobile = 1;
-} else {
-    $contact_by_mobile = 0;
-}
-if ($contact == 'email') {
-    $contact_by_email = 1;
-} else {
-    $contact_by_email = 0;
-}
-
-if ($email_address == null || $phone == null || $comments == null) {
-    $error = "Invalid input data. Check all fields and try again.";
-    echo "From Data Error: ", $error;
-    exit();
-} else {
-    //data is valid. define pdo & insert data.
-    try {
-        require_once ('../../model/database.php');
-        require_once ('../../model/visit.php');
-        addVisit($email_address, $phone, $contact_by_mobile,
-                $contact_by_email, $comments);
-    } catch (PDOException $ex) {
-        $error_message = $ex->getMessage();
-        echo 'DB Error: ' . $error_message;
-    }
-}
 ?>
 
 <!doctype html>
@@ -61,7 +33,18 @@ if ($email_address == null || $phone == null || $comments == null) {
             <li class="nav-item"><a class="nav-link" href="listrespondents.php">Respondents</a></li>
         </ul>
     </nav>
-    <h1 id="thankYouScreen">Thank You!</h1>
+    <div id="formContainer" style="color:White">
+        <h1 id="thankYouScreen">Respondent List</h1>
+        <p>
+        <ul>
+            <?php foreach ($respondents as $respondent) : ?>
+                <li><?php echo $respondent->getLastName() . ', '
+            . $respondent->getFirstName();
+                ?></li>
+            <?php endforeach; ?>
+        </ul>
+        </p>
+</div>
 </body>
 </html>
 
