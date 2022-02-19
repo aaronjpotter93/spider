@@ -1,20 +1,20 @@
 <?php
-
 /*
  *
  *       Date              User               Description
  * ------------------------------------------------------------------------------
- *      2/11/22           Aaron Potter        Refactoring initial functionality
+ *      2/16/22           Aaron Potter          Adding an error page
  * 
  *  
  */
-require_once ('../../util/secure_conn.php');
-require_once ('../../util/valid_admin.php');
-require_once ('../../model/database.php');
-require_once ('../../model/respondent.php');
-
-$respondents = RespondentDB::getRespondents();
-
+//try {
+//    require_once ('../../util/secure_conn.php');
+//    require_once ('../../util/valid_admin.php');
+//    require_once ('../../model/database.php');
+//} catch (Exception $ex) {
+//    $error_message = $e->getMessage();
+//    echo 'DB Error: ' . $error_message;
+//}
 ?>
 
 <!doctype html>
@@ -34,18 +34,7 @@ $respondents = RespondentDB::getRespondents();
             <li class="nav-item"><a class="nav-link" href="listrespondents.php">Respondents</a></li>
         </ul>
     </nav>
-    <div id="formContainer" style="color:White">
-        <h1 id="thankYouScreen">Respondent List</h1>
-        <p>
-        <ul>
-            <?php foreach ($respondents as $respondent) : ?>
-                <li><?php echo $respondent->getLastName() . ', '
-            . $respondent->getFirstName();
-                ?></li>
-            <?php endforeach; ?>
-        </ul>
-        </p>
-</div>
+    <h1 id="thankYouScreen">Error. Go back and try again.</h1>
 </body>
 </html>
 

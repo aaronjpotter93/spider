@@ -28,7 +28,7 @@ if ($contact == 'email') {
 
 if ($email_address == null || $phone == null || $comments == null) {
     $error = "Invalid input data. Check all fields and try again.";
-    echo "From Data Error: ", $error;
+    echo "Form Data Error: ", $error;
     exit();
 } else {
     //data is valid. define pdo & insert data.

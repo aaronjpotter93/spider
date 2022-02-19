@@ -48,7 +48,7 @@ function getVisitbyResp($respondent_id) {
 function delVisit($visit_id) {
     $db= Database::getDB();
      $visit_id = filter_input(INPUT_POST, 'visit_id', FILTER_VALIDATE_INT);
-    $respondent_id = filter_input(INPUT_POST, 'respondent_id', FILTER_VALIDATE_INT);
+//    $respondent_id = filter_input(INPUT_POST, 'respondent_id', FILTER_VALIDATE_INT);
     $queryDelete = 'DELETE FROM visit WHERE visit_id = :visit_id';
     $statement3 = $db->prepare($queryDelete);
     $statement3->bindValue(":visit_id", $visit_id);
